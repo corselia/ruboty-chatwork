@@ -72,7 +72,11 @@ module Ruboty
             )
           end
 
-          sleep (60 * 60) / chatwork_api_rate
+          if ENV["CHATWORK_API_RATE_PER_FIVE_MINUTES"]
+            sleep (5 * 60) / ENV["CHATWORK_API_RATE_PER_FIVE_MINUTES"].to_i
+          elsif
+            sleep (60 * 60) / chatwork_api_rate
+          end
         end
       end
     end
